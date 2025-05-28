@@ -99,6 +99,7 @@ const Navbar = () => {
                       <CloseIcon fontSize='inherit'/>
                     </IconButton>
                   </Box>
+                  
                   {pages.map((page) => (
                     <Link 
                       key={page}

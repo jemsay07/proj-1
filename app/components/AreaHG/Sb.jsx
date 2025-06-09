@@ -1,19 +1,9 @@
 import React from 'react'
 import { Box, Container, Typography } from '@mui/material'
 import Buttons from '../Utils/Buttons';
+import PropTypes from 'prop-types';
 
-const data = [
-    {
-        bgC: '#4E3374',
-        bgCL: 'linear-gradient(0deg,rgba(78, 51, 116, 1) 0%, rgba(70, 51, 114, 1) 35%, rgba(146, 100, 143, 1) 100%)',
-        title: 'Duis quis pulvinar nulla Cras erat orci vulputate',
-        descD1: 'Duis sed lectus odio donec lacinia augue',
-        descD2: 'Bibendum lacus urna molestie.',
-        descM: 'In sit amet massa felis.',
-    }
-]
-
-const Sb = () => {
+const Sb = ({data}) => {
 
     const ParagraphStyle = {
         fontSize: { xs: '3.722vw', md: '1rem', lg: '1.625rem' },
@@ -33,22 +23,21 @@ const Sb = () => {
 
   return (
     <Box 
+        className='relative'
         sx={{
             backgroundColor: 'transparent',
-            position: 'relative',
             marginBottom: {xs: '56px', md: '3.5rem', lg: '5rem'},
         }}
     >
         <Container maxWidth="lg" sx={{ padding: '20px', backgroundColor: 'transparent', borderRadius: '8px' }}>
             <Box
+                className='flex align-center'
                 sx={{
-                    backgroundColor: data[0].bgC,
-                    backgroundImage: data[0].bgCL,
+                    backgroundColor: data?.bgC,
+                    backgroundImage: data?.bgCL,
                     borderRadius: '8px',
                     color: '#fff',
-                    display: 'flex',
                     flexDirection:'column',
-                    alignItems: 'center',
                     justifyContent: 'flex-end',
                     height: {xs: '79.467vw', md: '35.139vw', lg:'480px'},
                     paddingY: { xs: '40px', md: '64px' },
@@ -67,14 +56,14 @@ const Sb = () => {
                         textTransform: 'uppercase',
                     }}
                 >
-                    {data[0].title}
+                    {data?.title}
                 </Typography>
                 <Box sx={DeskStyle} >
-                    <Typography sx={ParagraphStyle}> {data[0].descD1} </Typography>
-                    <Typography className='txt-desc2' sx={ParagraphStyle}>{data[0].descD2}</Typography>
+                    <Typography sx={ParagraphStyle}> {data?.descD1} </Typography>
+                    <Typography className='txt-desc2' sx={ParagraphStyle}>{data?.descD2}</Typography>
                 </Box>
                 <Box sx={MobiStyle} >
-                    <Typography className='txt-desc2' sx={ParagraphStyle}>{data[0].descM}</Typography>
+                    <Typography className='txt-desc2' sx={ParagraphStyle}>{data?.descM}</Typography>
                 </Box>
                 <Box sx={DeskStyle}>
                     <Buttons
@@ -95,5 +84,17 @@ const Sb = () => {
     </Box>
   )
 }
+Sb.propTypes = {
+    data: PropTypes.arrayOf(
+        PropTypes.shape({
+            bgC: PropTypes.string,
+            bgCL: PropTypes.string,
+            title: PropTypes.string,
+            descD1: PropTypes.string,
+            descD2: PropTypes.string,
+            descM: PropTypes.string,
+        })
+    ).isRequired,
+};
 
 export default Sb

@@ -1,5 +1,6 @@
 import { Box } from '@mui/material';
 import React from 'react'
+import PropTypes from 'prop-types';
 
 const Heading = ({title, fontSize, display}) => {
     
@@ -45,7 +46,13 @@ const Heading = ({title, fontSize, display}) => {
             {title}
         </Box>
     ) : ''
-  )
+  );
 }
+
+Heading.propTypes = {
+  title: PropTypes.string.isRequired,
+  fontSize: PropTypes.array,
+  display: PropTypes.bool
+};
 
 export default Heading

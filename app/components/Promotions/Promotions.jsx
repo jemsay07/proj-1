@@ -5,7 +5,6 @@ import Heading from '../Utils/Heading'
 
 import Pattern3 from '../../../assets/images/bg/pattern3.svg'
 
-
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { Navigation, Pagination, Scrollbar, A11y  } from 'swiper/modules';
 import 'swiper/css';
@@ -14,25 +13,10 @@ import 'swiper/css/pagination';
 import 'swiper/css/scrollbar';
 import 'swiper/css/free-mode';
 import Buttons from '../Utils/Buttons';
+import PropTypes from 'prop-types';
 
-
-const data = [
-    {
-        bgCL: 'linear-gradient(0deg,#eba250 0%, #5c3301 5%, #f2860a 100%);',
-        imgUrl: 'https://placehold.co/633x336/eba250/5c3301',
-        text1: 'Lorem ipsum',
-        text2: 'Dolor sit amet',
-    },
-    {
-        bgCL: 'linear-gradient(0deg,#eba250 0%, #5c3301 5%, #f2860a 100%);',
-        imgUrl: 'https://placehold.co/633x336/eba250/5c3301',
-        text1: 'Lorem ipsum',
-        text2: 'Dolor sit amet',
-    }
-];
-
-const Promotions = () => {
-  const [isMoobile, setIsMobile] = useState(false);
+const Promotions = ({data}) => {
+  const [isMobile, setIsMobile] = useState(false);
 
     useEffect(() => {
         const handleResize = () => {
@@ -102,7 +86,7 @@ const Promotions = () => {
                 display={true} // Assuming you want to display the title
             />
             <Box sx={{ flexGrow: 1, marginBottom: { xs: '2rem', md: '3.5rem' } }}>
-                {isMoobile ? (
+                {isMobile ? (
                     <Swiper
                         modules={[Navigation, Pagination, Scrollbar, A11y]}
                         spaceBetween={10}
@@ -219,5 +203,15 @@ const Promotions = () => {
     </Box>
   )
 }
+Promotions.propTypes = {
+  data: PropTypes.arrayOf(
+    PropTypes.shape({
+      bgCL: PropTypes.string,
+      imgUrl: PropTypes.string,
+      text1: PropTypes.string,
+      text2: PropTypes.string,
+    })
+  ).isRequired,
+};
 
 export default Promotions

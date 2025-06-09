@@ -1,6 +1,8 @@
 import React, { useEffect, useState } from 'react'
 import { Box, Container } from '@mui/material';
 
+import PropTypes from 'prop-types';
+
 import { Swiper, SwiperSlide } from 'swiper/react';
 
 import 'swiper/css';
@@ -9,9 +11,7 @@ import 'swiper/css/pagination';
 import 'swiper/css/scrollbar';
 import 'swiper/css/free-mode';
 
-const data = ['D0UnqGm_miA','9xwazD5SyVg','u31qwQUeGuM','LXb3EKWsInQ','9Nm9tU93BZo'];
-
-const YT = () => {
+const YT = ({data}) => {
 
   const [currentData, setCurrentData] = useState('');
 
@@ -136,5 +136,8 @@ const YT = () => {
     </Box>
   )
 }
+YT.propTypes = {
+  data: PropTypes.arrayOf(PropTypes.string).isRequired,
+};
 
 export default YT

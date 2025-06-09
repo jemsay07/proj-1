@@ -1,5 +1,6 @@
 import { Box, Button } from '@mui/material'
 import React from 'react'
+import PropTypes from 'prop-types';
 
 const Buttons = ({
     text='Helo',
@@ -68,5 +69,23 @@ const Buttons = ({
     </Box>
   )
 }
+Buttons.propTypes = {
+  text: PropTypes.string,
+  variant: PropTypes.string,
+  link: PropTypes.string,
+  color: PropTypes.string,
+  fontSize: PropTypes.oneOfType([
+    PropTypes.object,
+    PropTypes.string
+  ]),
+  padding: PropTypes.oneOfType([
+    PropTypes.object,
+    PropTypes.string
+  ]),
+  width: PropTypes.oneOfType([
+    PropTypes.object,
+    PropTypes.string
+  ])
+};
 
 export default Buttons

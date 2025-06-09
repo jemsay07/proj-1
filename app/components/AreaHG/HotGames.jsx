@@ -2,6 +2,8 @@ import React from 'react'
 import { Box, Container, Typography } from '@mui/material'
 import Heading from '../Utils/Heading'
 
+import PropTypes from 'prop-types';
+
 import { AspectRatio } from '@mui/icons-material';
 
 import { Swiper, SwiperSlide } from 'swiper/react';
@@ -14,34 +16,6 @@ import 'swiper/css/scrollbar';
 import 'swiper/css/free-mode';
 import Buttons from '../Utils/Buttons';
 
-
-const data = [
-    {
-        title: 'Mauris vulputate',
-        description: 'Sed luctus malesuada scelerisque. Fusce consectetur turpis et vestibulum sagittis. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Nunc et ornare neque. Fusce pretium lacinia egestas. Curabitur laoreet sed odio sed molestie. Sed ut congue risus. Nullam porttitor, enim a facilisis tincidunt, ligula felis eleifend est, in efficitur augue leo nec erat. Suspendisse potenti. Sed sed dolor ac enim commodo aliquet.',
-        bgC: 'linear-gradient(0deg, #42324f 0%, #9a76b7 100%)',
-        imgUrl: 'https://placehold.co/310x468/42324f/9a76b7'
-    },
-    {
-        title: 'pulvinar nulla',
-        description: 'Donec sit amet nulla sit amet nibh tincidunt rhoncus. Curabitur ultricies quis justo in tincidunt. Proin non metus efficitur, tincidunt orci tristique, viverra magna. Cras aliquam risus nisl, quis semper orci molestie vel. Integer tincidunt, enim a sollicitudin tristique, erat orci accumsan augue, quis pretium ante libero eget ante. Praesent venenatis purus eu mauris pulvinar pretium. Ut molestie risus nec tortor pellentesque egestas. Integer vel ultrices ligula. ',
-        bgC: 'linear-gradient(0deg, #262c1f 0%, #566446 100%)',
-        imgUrl: 'https://placehold.co/310x468/262c1f/566446'
-    },
-    {
-        title: 'pulvinar vel porttitor',
-        description: 'Nam a accumsan arcu. Phasellus lacinia risus at nibh volutpat varius. Morbi orci magna, pulvinar vel porttitor et, posuere vitae dui. Vivamus convallis molestie nunc non sodales',
-        bgC: 'linear-gradient(0deg, #532f12 0%, #c26c2f 100%)',
-        imgUrl: 'https://placehold.co/310x468/532f12/c26c2f'
-    },
-    {
-        title: 'ultricies fringilla',
-        description: 'ivamus convallis molestie nunc non sodales. Pellentesque at turpis sem. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia curae; Donec elementum, sapien ac vehicula ultricies, lacus urna molestie nibh, eget congue felis turpis sed lorem. Sed id massa sit amet tellus dignissim tempus. Sed in ligula sed enim facilisis tincidunt. Suspendisse potenti. Sed sed dolor ac enim commodo aliquet.',
-        bgC: 'linear-gradient(0deg, #183618 0%, #367a36 100%)',
-        imgUrl: 'https://placehold.co/310x468/183618/367a36'
-    },
-]
-
 const ppFontSize = [
   {
     fontSizeLg: "2rem",
@@ -51,7 +25,7 @@ const ppFontSize = [
   }
 ];
 
-const HotGames = () => {
+const HotGames = ({data}) => {
   const GameCardStyle = {
     '&.game-card': {
         borderRadius: '8px',
@@ -150,8 +124,8 @@ const HotGames = () => {
                     data.map((item, index) => (
                         <SwiperSlide key={index}>
                             <Box
+                                className='relative'
                                 sx={{
-                                    position: 'relative',
                                     cursor: 'pointer',
                                     width: 'inherit',
                                 }}
@@ -220,5 +194,16 @@ const HotGames = () => {
     </Box>
   )
 }
+
+HotGames.propTypes = {
+  data: PropTypes.arrayOf(
+    PropTypes.shape({
+      title: PropTypes.string.isRequired,
+      description: PropTypes.string.isRequired,
+      bgC: PropTypes.string.isRequired,
+      imgUrl: PropTypes.string.isRequired,
+    })
+  ).isRequired,
+};
 
 export default HotGames

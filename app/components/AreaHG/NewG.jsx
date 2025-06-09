@@ -3,22 +3,7 @@ import React from 'react'
 import Heading from '../Utils/Heading'
 import { AspectRatio } from '@mui/icons-material';
 import Buttons from '../Utils/Buttons';
-
-
-const data = [
-    { bgCL: 'linear-gradient(0deg,#57c785 50%, #eddd53 100%)', imgUrl: 'https://placehold.co/310x468/57c785/eddd53' },
-    { bgCL: 'linear-gradient(0deg, #262c1f 0%, #566446 100%)', imgUrl: 'https://placehold.co/310x468/262c1f/566446' },
-    { bgCL: 'linear-gradient(0deg,#22c1c3 0%, #fdbb2d 100%)', imgUrl: 'https://placehold.co/310x468/22c1c3/fdbb2d' },
-    { bgCL: 'linear-gradient(0deg,#3f5efb 0%, #fc466b 100%)', imgUrl: 'https://placehold.co/310x468/3f5efb/fc466b' },
-    { bgCL: 'linear-gradient(0deg, #183618 0%, #367a36 100%)', imgUrl: 'https://placehold.co/310x468/183618/367a36' },
-    { bgCL: 'linear-gradient(0deg,#eeaeca 0%, #94bbe9 100%)', imgUrl: 'https://placehold.co/310x468/eeaeca/94bbe9' },
-    { bgCL: 'linear-gradient(0deg,#2a7b9b 0%, #57c785 50%)', imgUrl: 'https://placehold.co/310x468/2a7b9b/57c785' },
-    { bgCL: 'linear-gradient(0deg, #42324f 0%, #9a76b7 100%)', imgUrl: 'https://placehold.co/310x468/42324f/9a76b7' },
-    { bgCL: 'linear-gradient(0deg,#cf21a4 0%, #ffd67d 100%)', imgUrl: 'https://placehold.co/310x468/cf21a4/ffd67d' },
-    { bgCL: 'linear-gradient(0deg,#91ed28 0%, #fcad46 100%)', imgUrl: 'https://placehold.co/310x468/91ed28/fcad46' },
-    { bgCL: 'linear-gradient(0deg, #532f12 0%, #c26c2f 100%)', imgUrl: 'https://placehold.co/310x468/532f12/c26c2f' },
-    { bgCL: 'linear-gradient(0deg,#c8aeee 0%, #94e9db 100%)', imgUrl: 'https://placehold.co/310x468/c8aeee/94e9db' },
-]
+import PropTypes from 'prop-types';
 
 const ppFontSize = [
   {
@@ -29,7 +14,7 @@ const ppFontSize = [
   }
 ];
 
-const NewG = () => {
+const NewG = ({data}) => {
   return (
     <Box id="new-games" sx={{marginBottom: {xs: '56px', md: '3.5rem', lg: '5rem'},}}>
       <Container maxWidth='lg'>
@@ -44,13 +29,11 @@ const NewG = () => {
                     data.map((item, index) => (
                         <Grid key={index} size={1}>
                             <Box
+                                className='flex align-center justify-center'
                                 sx={{
                                     background: item.bgCL,
                                     borderRadius: '5px',
                                     cursor: 'pointer',
-                                    display: 'flex',
-                                    justifyContent:'center',
-                                    alignItems: 'center',
                                     height: {xs: '185px', sm: '190px', md: '205px', lg: '219px'},
                                     position: 'relative',
                                     '&:hover .hover': {
@@ -65,13 +48,10 @@ const NewG = () => {
                                 >
                                     <img src={item.imgUrl} alt="swiper img"/>
                                 </AspectRatio>
-                                <Box className='hover'
+                                <Box className='hover align-center justify-center absolute'
                                     sx={{
                                         display: {xs: 'none', md:'flex'},
-                                        justifyContent: 'center',
-                                        alignItems: 'center',
                                         flexDirection: 'column',
-                                        position: 'absolute',
                                         color: '#fff',
                                         backgroundColor: 'rgba(0, 0, 0, 0.5)',
                                         width: '100%',
@@ -108,5 +88,13 @@ const NewG = () => {
     </Box>
   )
 }
+NewG.propTypes = {
+  data: PropTypes.arrayOf(
+    PropTypes.shape({
+      bgCL: PropTypes.string.isRequired,
+      imgUrl: PropTypes.string.isRequired,
+    })
+  ).isRequired,
+};
 
 export default NewG

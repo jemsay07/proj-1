@@ -35,6 +35,15 @@ a {
   text-decoration: none;
 }
 
+.flex{display:flex}
+.align-center{align-items:center}
+.justify-center{justify-content:center}
+
+.absolute{position:absolute}
+.relative{position:relative}
+
+.txt-center{text-align:center}
+
 @media (prefers-color-scheme: dark) {
   html {
     color-scheme: dark;

@@ -6,7 +6,7 @@ const HeroData = {
     title: '100% Adipisicing elit',
     descDesktop: 'voluptatibus d.',
     descMobile: 'voluptatibus m.',
-    btnText: 'Join Now',
+    btnText: 'fringilla',
     btnLink: '#',
 };
 

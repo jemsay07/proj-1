@@ -8,6 +8,7 @@ const pages = ['Home', 'Exclusive', 'Hot Games', 'New Games', 'Promotions', "Big
 
 const Navbar = () => {
   const [anchorElNav, setAnchorElNav] = useState(null);
+  const [activePage, setActivePage] = useState('Home');
 
   const handleOpenNavMenu = (event) => {
     setAnchorElNav(event.currentTarget);
@@ -30,7 +31,9 @@ const Navbar = () => {
           >
             <Box component='h1' sx={{ fontSize: '24px', fontWeight: 'bold', textTransform: 'uppercase' }}>
               <Typography variant='h6' component='div' sx={{ flexGrow: 1, color: '#fff' }}>
-                Logo Here
+                <Link href='#home' color='inherit' underline='none' sx={{ display: 'flex', alignItems: 'center' }}>
+                  Logo
+                </Link>
               </Typography>
             </Box>
             <Box component={'nav'} sx={{ display: { xs: 'none', md: 'flex' }, gap: '20px' }}>
@@ -40,13 +43,20 @@ const Navbar = () => {
                   color='inherit'
                   underline='none'
                   href={`#${page.toLowerCase().replace(/\s+/g, '-')}`}
+                  onClick={() => setActivePage(page)}
                   sx={{
                     lineHeight: '56px',
+                    color: activePage === page ? '#CAAB72' : 'inherit',
+                    fontWeight: activePage === page ? 'bold' : 'normal',
+                    transition: 'color 0.3s ease-in-out',
                     '&:hover': {
                       color: '#CAAB72',
                       transition: 'color 0.3s ease-in-out',
                       textDecoration: 'none',
                     },
+                    '&:active': {
+                      color: '#CAAB72',
+                    }
                   }}
                 >
                   {page}
@@ -54,7 +64,7 @@ const Navbar = () => {
               ))}
 
             </Box>
-            <Box sx={{ display: {xs:'flex', md: 'none'}, gap: '20px' }}>
+            <Box sx={{ display: {xs:'flex', md: 'none'}, gap: {xs: 0, md: '20px'} }}>
               {/* Add your navigation items here */}
               <IconButton 
                 size='large'

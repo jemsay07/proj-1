@@ -1,7 +1,8 @@
-import { Box, Typography, Button, Container } from '@mui/material'
 import React from 'react'
+import { Box, Typography, Button, Container } from '@mui/material'
 
 import PropTypes from 'prop-types';
+import { AspectRatio } from '@mui/icons-material';
 
 const Hero = ({Hdata}) => {
 
@@ -11,8 +12,8 @@ const Hero = ({Hdata}) => {
         '.container':{
             height: '100%',
         },
-        '.hero__bg--desktop':{display: { xs: 'none', md: 'block' }, height: '100%'},
-        '.hero__bg--mobile':{display: { xs: 'block', md: 'none' }, height: '100%'},
+        '.hero__bg--desktop':{display: { xs: 'none', md: 'block' }, height: '100%', minHeight: '460px' },
+        '.hero__bg--mobile':{display: { xs: 'block', md: 'none' }, height: '100%', minHeight: '544px' },
         '.hero__content':{
             color: '#fff',
             height: '100%',
@@ -47,8 +48,12 @@ const Hero = ({Hdata}) => {
         <Box component={'section'} className='hero flex align-center justify-center relative txt-center' id='home' sx={HeroStyle} >
             <Container maxWidth='lg' className='container flex align-center justify-center relative' >
                 <Box component={'div'} className='hero__bg' sx={{height: '100%',}}>
-                    <Box component={'img'} src={Hdata?.bgDesk} alt="hero background" className='hero__bg--desktop' />
-                    <Box component={'img'} src={Hdata?.bgMobile} alt="hero background" className='hero__bg--mobile' />
+                    <AspectRatio ratio="16/9" className='hero__bg--desktop'>
+                        <Box component={'img'} src={Hdata?.bgDesk} alt="hero background" className='hero__bg--desktop' />
+                    </AspectRatio>
+                    <AspectRatio ratio="16/9" className='hero__bg--mobile'>
+                        <Box component={'img'} src={Hdata?.bgMobile} alt="hero background" className='hero__bg--mobile' />
+                    </AspectRatio>
                 </Box>
                 <Box component={'div'} className='hero__content flex justify-center absolute txt-center' >
                     <Box className='inner flex align-center justify-center' >
@@ -150,8 +155,16 @@ const Hero = ({Hdata}) => {
     )
 }
 Hero.propTypes = {
-    Hdata: PropTypes.any,
+    Hdata: PropTypes.shape({
+        bgDesk: PropTypes.string.isRequired,
+        bgMobile: PropTypes.string.isRequired,
+        titleLogo: PropTypes.arrayOf(PropTypes.string).isRequired,
+        title: PropTypes.string.isRequired,
+        descDesktop: PropTypes.string.isRequired,
+        descMobile: PropTypes.string.isRequired,
+        btnLink: PropTypes.string.isRequired,
+        btnText: PropTypes.string.isRequired,
+    }).isRequired,
 }
-
 
 export default Hero
